@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dr. Lucas Mendes - Psicólogo Clínico</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* ============ TIPOGRAFIA REFINADA E VARIAVEIS ============ */
+    :root {
+      --bg: #f9f8f5;
+      --card: #ffffff;
+      --text: #171717; /* Pouco mais escuro para contraste */
+      --subtext: #4a4a4a; /* Mais suave */
+      --accent: #9d7b57; /* Um toque mais quente e rico */
+      --accent-light: #e8ddd1; /* Fundo mais claro para destaque */
+      --accent-dark: #6e553f; /* Tom mais profundo */
+      --radius: 18px; /* Cantos levemente mais arredondados */
+      --shadow: 0 10px 35px rgba(0,0,0,0.08); /* Sombra mais destacada e suave */
+      --shadow-hover: 0 20px 50px rgba(0,0,0,0.15);
+      --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Curva de transição mais suave */
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+      font-size: 16.5px; /* Maior legibilidade */
+    }
+
+    /* Playfair Display para Títulos e Destaques */
+    .logo, .hero h1, .section-header h2, .card h2, .footer-col h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+    }
+
+    /* ============ HEADER REFINADO ============ */
+    header {
+      padding: 1rem 3rem; /* Espaçamento lateral maior */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      transition: var(--transition);
+    }
+
+    .header-scrolled {
+      padding: 0.7rem 3rem;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--accent-dark);
+      display: flex;
+      align-items: center;
+      z-index: 1001;
+    }
+
+    .logo i {
+      margin-right: 10px;
+      color: var(--accent);
+      font-size: 1.8rem;
+    }
+
+    .logo-text {
+      font-size: 1.6rem;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--accent-dark);
+      cursor: pointer;
+      z-index: 1001;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      transition: var(--transition);
+    }
+
+    .mobile-menu-btn:hover {
+      background: rgba(157, 123, 87, 0.1);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+    }
+
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+    }
+
+    .mobile-nav {
+      display: none;
+    }
+
+    nav a {
+      margin-left: 2rem;
+      text-decoration: none;
+      color: var(--subtext);
+      font-size: 0.95rem;
+      font-weight: 400; /* Mais leve */
+      letter-spacing: 0.5px;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 3px; /* Linha de hover mais grossa */
+      background: var(--accent);
+      transition: var(--transition);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .nav-btn {
+      padding: 0.7rem 1.6rem;
+      background: var(--accent);
+      color: white;
+      border-radius: 50px;
+      margin-left: 2rem;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 4px 12px rgba(157, 123, 87, 0.3);
+    }
+
+    .nav-btn:hover {
+      background: var(--accent-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(157, 123, 87, 0.4);
+    }
+
+    /* Menu Mobile */
+    .mobile-menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+    }
+
+    .mobile-menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-menu-content {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 85%;
+      max-width: 400px;
+      height: 100%;
+      background: white;
+      z-index: 1000;
+      padding: 6rem 2rem 2rem;
+      overflow-y: auto;
+      transition: right 0.4s ease;
+      box-shadow: -5px 0 30px rgba(0,0,0,0.1);
+    }
+
+    .mobile-menu-content.active {
+      right: 0;
+    }
+
+    .mobile-menu-content a {
+      display: block;
+      padding: 1rem 0;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 1.1rem;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      transition: var(--transition);
+    }
+
+    .mobile-menu-content a:hover {
+      color: var(--accent);
+      padding-left: 10px;
+    }
+
+    .mobile-menu-content .nav-btn {
+      margin: 2rem 0 0;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* ============ HERO IMPACTANTE ============ */
+    .hero {
+      text-align: center;
+      padding: 14rem 1.5rem 10rem;
+      /* Gradiente mais suave e com um toque artístico */
+      background: linear-gradient(135deg, var(--accent-light) 5%, var(--bg) 60%, #fefcfb 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: var(--accent-light);
+      opacity: 0.15;
+      top: -100px;
+      right: -100px;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: var(--accent-light);
+      opacity: 0.1;
+      bottom: -50px;
+      left: -50px;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4rem); /* Título maior */
+      font-weight: 300;
+      color: var(--accent-dark);
+      letter-spacing: -0.5px;
+      max-width: 900px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      max-width: 900px;
+      margin: 0 auto;
+      color: var(--subtext);
+      font-size: clamp(1.1rem, 3vw, 1.3rem);
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ============ BOTÃO PREMIUM ============ */
+    .btn {
+      margin-top: 1.5rem;
+      padding: 1.1rem 2.5rem;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 25px rgba(157, 123, 87, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn:hover {
+      background: var(--accent-dark);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(157, 123, 87, 0.5);
+    }
+    
+    /* Efeito de brilho ao passar o mouse */
+    .btn::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.15);
+        transition: all 0.5s ease;
+        transform: skewX(-20deg);
+    }
+
+    .btn:hover::after {
+        left: 100%;
+    }
+
+    .btn i {
+      margin-left: 8px;
+    }
+
+    /* ============ SEÇÕES E CARDS REFINADOS ============ */
+    .section {
+      max-width: 1200px;
+      margin: 6rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: var(--accent-dark);
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    
+    .section-header h2::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 4px;
+        background: var(--accent);
+        border-radius: 2px;
+    }
+
+    .section-header p {
+      max-width: 700px;
+      margin: 0 auto;
+      color: var(--subtext);
+      font-size: clamp(1rem, 2vw, 1.1rem);
+    }
+
+    /* Cards */
+    .card {
+      background: var(--card);
+      padding: 2.5rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 2rem;
+      transition: var(--transition);
+      border: none;
+    }
+
+        /* Cards */
+    .card-sobre p {
+        color: #4a4a4a;
+        padding-top: 1rem;
+    }
+
+      .card-sobre h3 {
+        color:#4f3c2c
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+
+    .card h2 {
+      margin-bottom: 1.2rem;
+      font-size: clamp(1.5rem, 3vw, 1.8rem);
+      color: var(--accent-dark);
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+    }
+
+    .card h2 i {
+      margin-right: 12px;
+      color: var(--accent);
+      font-size: 1.6rem;
+    }
+
+    .card p {
+      color: var(--subtext);
+      margin-bottom: 1rem;
+      font-size: clamp(0.95rem, 2vw, 1rem);
+    }
+
+    /* ============ SOBRE REFINADO ============ */
+    .sobre-content {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .sobre-text h3 {
+      font-size: clamp(1.2rem, 3vw, 1.5rem);
+      margin-bottom: 1.5rem;
+      color:#4f3c2c
+    }
+
+
+    .sobre-img {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+      height: 100%;
+      min-height: 500px;
+      border: 8px solid var(--card); /* Borda interna branca para destacar a imagem */
+    }
+
+    .sobre-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .sobre-img:hover img {
+      transform: scale(1.03);
+    }
+
+    .sobre-img-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--accent-dark) 0%, var(--accent) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .sobre-img-placeholder i {
+      font-size: 5rem;
+      opacity: 0.7;
+    }
+
+    .fas fa-user-md {
+        color: #4f3c2c;
+    }
+
+    /* ============ SERVIÇOS REFINADO ============ */
+    .servicos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .servico-card {
+      padding: 2.2rem;
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      border-left: 6px solid var(--accent);
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .servico-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--accent-light);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        z-index: 0;
+        border-radius: var(--radius);
+    }
+    
+    .servico-card:hover::before {
+        opacity: 0.3;
+    }
+
+    .servico-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .servico-card h3 {
+      margin-bottom: 1rem;
+      color: var(--accent-dark);
+      display: flex;
+      align-items: center;
+      font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+      position: relative;
+      z-index: 1;
+    }
+
+    .servico-card h3 i {
+      margin-right: 10px;
+      color: var(--accent-dark);
+      font-size: 1.4rem;
+    }
+    
+    .servico-card p {
+        position: relative;
+        z-index: 1;
+    }
+
+    /* ============ ABORDAGEM REFINADA ============ */
+    .abordagem-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .abordagem-item {
+      background: var(--card);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border-left: 4px solid var(--accent);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+    }
+    
+    .abordagem-item:hover {
+        transform: translateY(-3px);
+        background: #fcfbf9;
+    }
+
+    .abordagem-item h4 {
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ============ DEPOIMENTOS ELEGANTE ============ */
+    .depoimentos-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .depoimento-card {
+      background: var(--card);
+      padding: 2.5rem;
+      border-radius: var(--radius);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      position: relative;
+      height: 100%;
+    }
+
+    .depoimento-card::before {
+      content: '"';
+      position: absolute;
+      top: 5px;
+      left: 25px;
+      font-size: 5rem;
+      color: var(--accent-light);
+      font-family: 'Playfair Display', serif;
+      opacity: 0.7;
+    }
+
+    .depoimento-text {
+      margin-bottom: 1.5rem;
+      font-style: italic;
+      position: relative;
+      z-index: 1;
+      font-size: 1.05rem;
+      color: var(--text);
+    }
+
+    .depoimento-author {
+      display: flex;
+      align-items: center;
+    }
+
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-right: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    /* ============ CONTATO REFINADO ============ */
+    .contato-container {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr; /* Formulario mais largo, info mais estreito */
+      gap: 3rem;
+    }
+    
+    .contato-form {
+        grid-column: 1 / 2;
+    }
+
+    .contato-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .contato-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .contato-item i {
+      color: var(--accent-dark);
+      font-size: 1.4rem;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--subtext);
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid #e0e0e0;
+      background: #fafafa;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--accent-dark);
+      box-shadow: 0 0 0 4px rgba(157, 123, 87, 0.2);
+    }
+
+    /* ============ FOOTER REFORÇADO ============ */
+    .footer {
+      background: linear-gradient(135deg, var(--accent-dark) 0%, #4f3c2c 100%);
+      color: #f0f0f0;
+      padding: 5rem 1.5rem 2.5rem;
+      border-top: 5px solid var(--accent);
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-col h3 {
+      margin-bottom: 1.5rem;
+      color: white;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+    }
+
+    .footer-col p, .footer-col a {
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 0.8rem;
+      display: block;
+      text-decoration: none;
+      transition: var(--transition);
+      font-size: 0.95rem;
+    }
+
+    .footer-col a:hover {
+      color: var(--accent-light);
+      padding-left: 5px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .social-links a {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      transition: var(--transition);
+      margin-bottom: 0;
+      font-size: 1.2rem;
+    }
+
+    .social-links a:hover {
+      background: var(--accent);
+      transform: translateY(-3px) scale(1.05);
+    }
+
+    .copyright {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    /* ============ MEDIA QUERIES OTIMIZADAS ============ */
+    
+    /* Tablets e telas menores */
+    @media (max-width: 1200px) {
+        .sobre-content {
+          grid-template-columns: 1fr; /* Volta a ser 1 coluna em telas menores */
+        }
+    }
+    
+    @media (max-width: 992px) {
+      header {
+        padding: 1.2rem 1.5rem;
+      }
+      .header-scrolled {
+        padding: 0.8rem 1.5rem;
+      }
+      .sobre-content, .contato-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      
+      .hero {
+        padding: 10rem 1.5rem 6rem;
+      }
+      
+      .section {
+        margin: 4rem auto;
+      }
+      
+      .desktop-nav {
+        display: none;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+      }
+      
+      .mobile-nav {
+        display: block;
+      }
+      
+      .sobre-img {
+        min-height: 400px;
+        order: -1;
+      }
+      
+      .contato-form {
+          grid-column: 1 / -1;
+      }
+    }
+    
+    /* Tablets pequenos e celulares grandes */
+    @media (max-width: 768px) {
+      .hero {
+        padding: 8rem 1rem 5rem;
+      }
+      
+      .logo-text {
+        font-size: 1.3rem;
+      }
+      
+      .section {
+        padding: 0 1rem;
+        margin: 3rem auto;
+      }
+      
+      .section-header {
+        margin-bottom: 2.5rem;
+      }
+      
+      .servicos-grid,
+      .depoimentos-container,
+      .abordagem-list {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      
+      .footer-col {
+        text-align: center;
+      }
+      
+      .social-links {
+        justify-content: center;
+      }
+      
+      .sobre-img {
+        min-height: 350px;
+      }
+    }
+    
+    /* Celulares pequenos */
+    @media (max-width: 480px) {
+      header {
+        padding: 1rem 1rem;
+      }
+      
+      .header-scrolled {
+        padding: 0.7rem 1rem;
+      }
+      
+      .hero {
+        padding: 7rem 1rem 4rem;
+      }
+      
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      .btn {
+        padding: 1rem 2rem;
+        font-size: 0.95rem;
+        width: 100%;
+        max-width: 350px;
+      }
+      
+      .card {
+        padding: 1.5rem;
+      }
+      
+      .sobre-img {
+        min-height: 280px;
+      }
+      
+      .mobile-menu-content {
+        width: 90%;
+        padding: 5rem 1.5rem 1.5rem;
+      }
+    }
+    
+    /* Telas muito pequenas (menos de 360px) */
+    @media (max-width: 360px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+    }
+
+    .formacao-h2 {
+        color: #4f3c2c;
+    }
+  </style>
+</head>
+<body>
+
+  <header id="main-header">
+    <div class="logo">
+      <i class="fas fa-brain"></i>
+      <span class="logo-text">Dr. Lucas Mendes</span>
+    </div>
+    
+    <nav class="desktop-nav">
+      <a href="#sobre">Sobre</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#abordagem">Abordagem</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#contato">Contato</a>
+      <a href="#contato" class="nav-btn">Agendar</a>
+    </nav>
+    
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+      <i class="fas fa-bars"></i>
+    </button>
+    
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    <div class="mobile-menu-content" id="mobileMenuContent">
+      <a href="#sobre">Sobre</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#abordagem">Abordagem</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#contato">Contato</a>
+      <a href="#contato" class="nav-btn">Agendar Consulta</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1>Saúde mental é fundamento para uma vida plena e autêntica</h1>
+    <p>Ofereço um espaço seguro e acolhedor para explorar suas emoções, desenvolver autoconhecimento e construir recursos emocionais para enfrentar os desafios da vida.</p>
+    <button class="btn" id="agendarBtn">
+      Agendar primeira sessão <i class="fas fa-calendar-check"></i>
+    </button>
+  </section>
+
+  <section class="section" id="sobre">
+    <div class="section-header">
+      <h2>Sobre Mim</h2>
+      <p>Conheça minha trajetória e formação profissional</p>
+    </div>
+    
+    <div class="sobre-content">
+      
+      <div class="sobre-img">
+        <div class="sobre-img-placeholder">
+          <i class="fas fa-user-md"></i>
+        </div>
+      </div>
+      
+      <div class="sobre-text">
+        <div class="card-sobre" style="box-shadow: none; padding: 0; margin-bottom: 0;">
+          <h2 class="formacao-h2"> <i class="fas fa-user-md"></i> Formação e Experiência</h2>
+          <p>Psicólogo clínico formado pela Universidade de São Paulo (USP), com especialização em Terapia Cognitivo-Comportamental e mais de 10 anos de experiência no atendimento a adultos e adolescentes.</p>
+          <p>Mestre em Psicologia Clínica pela PUC-SP, com pesquisa focada nos transtornos de ansiedade e suas implicações nas relações interpessoais. Atualmente, além do atendimento clínico, atuo como supervisor de estágio em psicologia clínica.</p>
+          <p>Acredito que a terapia é um processo colaborativo, onde terapeuta e cliente trabalham juntos para promover mudanças significativas e duradouras.</p>
+          
+          <h3 style="margin-top: 2rem;">Formação Acadêmica</h3>
+          <ul style="padding-left: 1.5rem; color: var(--subtext);">
+            <li>Mestrado em Psicologia Clínica - PUC-SP</li>
+            <li>Especialização em Terapia Cognitivo-Comportamental - USP</li>
+            <li>Graduação em Psicologia - Universidade de São Paulo</li>
+            <li>Formação em Mindfulness-Based Cognitive Therapy</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="servicos">
+    <div class="section-header">
+      <h2>Serviços Oferecidos</h2>
+      <p>Atendimento personalizado para suas necessidades específicas</p>
+    </div>
+    
+    <div class="servicos-grid">
+      <div class="servico-card">
+        <h3><i class="fas fa-heart"></i> Terapia Individual</h3>
+        <p>Sessões semanais ou quinzenais focadas no autoconhecimento, desenvolvimento emocional e resolução de problemas específicos. Trabalhamos juntos para identificar padrões de pensamento e comportamento que possam estar limitando seu potencial.</p>
+        <p><strong>Duração:</strong> 50 minutos</p>
+      </div>
+      
+      <div class="servico-card">
+        <h3><i class="fas fa-hand-holding-heart"></i> Acompanhamento para Ansiedade</h3>
+        <p>Abordagem especializada para transtornos de ansiedade, ataques de pânico e fobias. Utilizo técnicas baseadas em evidências científicas para ajudar no gerenciamento dos sintomas e desenvolvimento de recursos de enfrentamento.</p>
+        <p><strong>Abordagem:</strong> TCC + Mindfulness</p>
+      </div>
+      
+      <div class="servico-card">
+        <h3><i class="fas fa-comments"></i> Terapia para Casais</h3>
+        <p>Mediação de conflitos, melhoria na comunicação e reconstrução da intimidade. Espaço seguro para que o casal possa expressar suas necessidades e trabalhar em direção a uma relação mais saudável e satisfatória.</p>
+        <p><strong>Duração:</strong> 80 minutos</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="abordagem">
+    <div class="section-header">
+      <h2>Abordagem Terapêutica</h2>
+      <p>Como trabalho para promover mudanças significativas e duradouras</p>
+    </div>
+    
+    <div class="card" style="box-shadow: none; border: 1px solid rgba(0,0,0,0.05);">
+      <h2><i class="fas fa-hands-helping"></i> Minha Abordagem</h2>
+      <p>Minha prática é fundamentada principalmente na **Terapia Cognitivo-Comportamental (TCC)**, uma abordagem científica que identifica e modifica padrões de pensamento e comportamentos disfuncionais. No entanto, integro técnicas de outras abordagens conforme as necessidades de cada cliente.</p>
+      
+      <h3 style="margin-top: 2rem; color: var(--accent-dark); font-size: 1.3rem;">Princípios que guiam meu trabalho:</h3>
+      <div class="abordagem-list">
+        <div class="abordagem-item">
+          <h4>Colaboração</h4>
+          <p>Terapeuta e cliente são parceiros no processo terapêutico</p>
+        </div>
+        <div class="abordagem-item">
+          <h4>Respeito à individualidade</h4>
+          <p>Cada pessoa é única e merece um plano terapêutico personalizado</p>
+        </div>
+        <div class="abordagem-item">
+          <h4>Base científica</h4>
+          <p>Utilização de técnicas com eficácia comprovada pela pesquisa</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="depoimentos">
+    <div class="section-header">
+      <h2>Depoimentos</h2>
+      <p>O que dizem aqueles que já passaram pelo processo terapêutico</p>
+    </div>
+    
+    <div class="depoimentos-container">
+      <div class="depoimento-card">
+        <div class="depoimento-text">
+          "A terapia com o Dr. Lucas foi transformadora. Após um ano de acompanhamento, consegui lidar com minha ansiedade de forma muito mais saudável e hoje me sinto mais confiante e no controle das minhas emoções."
+        </div>
+        <div class="depoimento-author">
+          <div class="author-avatar">M</div>
+          <div>
+            <strong>Mariana, 34 anos</strong>
+            <div style="color: var(--subtext); font-size: 0.9rem;">Consultora de RH</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="depoimento-card">
+        <div class="depoimento-text">
+          "O processo de autoconhecimento que vivenciei foi fundamental para minha transição de carreira. O Dr. Lucas soube me guiar com sensibilidade e profissionalismo, ajudando-me a identificar minhas verdadeiras vocações."
+        </div>
+        <div class="depoimento-author">
+          <div class="author-avatar">R</div>
+          <div>
+            <strong>Ricardo, 42 anos</strong>
+            <div style="color: var(--subtext); font-size: 0.9rem;">Ex-engenheiro, hoje professor</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="depoimento-card">
+        <div class="depoimento-text">
+          "Como casal, estávamos passando por um momento difícil de comunicação. A terapia nos ajudou a reconstruir nossa conexão e aprender a expressar nossas necessidades de forma respeitosa. Recomendo muito!"
+        </div>
+        <div class="depoimento-author">
+          <div class="author-avatar">C</div>
+          <div>
+            <strong>Camila e Pedro</strong>
+            <div style="color: var(--subtext); font-size: 0.9rem;">Casal, 5 anos de relacionamento</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contato">
+    <div class="section-header">
+      <h2>Entre em Contato</h2>
+      <p>Agende uma consulta ou tire suas dúvidas, responderei o mais breve possível.</p>
+    </div>
+    
+    <div class="contato-container">
+        
+        <div class="contato-form">
+          <div class="card" style="box-shadow: none; border: 1px solid #eee; padding: 2rem;">
+              <form action="#" method="POST">
+                  <div class="form-group">
+                      <label for="nome">Nome Completo</label>
+                      <input type="text" id="nome" name="nome" required placeholder="Seu nome">
+                  </div>
+                  
+                  <div class="form-group">
+                      <label for="email">E-mail</label>
+                      <input type="email" id="email" name="email" required placeholder="seu.email@exemplo.com">
+                  </div>
+                  
+                  <div class="form-group">
+                      <label for="assunto">Tipo de Consulta Desejada</label>
+                      <select id="assunto" name="assunto" required>
+                          <option value="" disabled selected>Selecione uma opção</option>
+                          <option value="individual">Terapia Individual</option>
+                          <option value="casal">Terapia para Casais</option>
+                          <option value="ansiedade">Acompanhamento para Ansiedade</option>
+                          <option value="orientacao">Orientação Profissional</option>
+                          <option value="duvidas">Outras Dúvidas</option>
+                      </select>
+                  </div>
+                  
+                  <div class="form-group">
+                      <label for="mensagem">Mensagem (opcional)</label>
+                      <textarea id="mensagem" name="mensagem" rows="4" placeholder="Detalhes sobre o que você busca..."></textarea>
+                  </div>
+                  
+                  <button type="submit" class="btn" style="width: 100%; margin-top: 0;">
+                      Enviar Solicitação <i class="fas fa-paper-plane"></i>
+                  </button>
+              </form>
+          </div>
+        </div>
+        
+        <div class="contato-info">
+            <div class="card" style="background: var(--accent-light); box-shadow: none;">
+                <h2><i class="fas fa-map-marker-alt"></i> Informações de Contato</h2>
+                
+                <div class="contato-item">
+                  <i class="fas fa-envelope"></i>
+                  <div>
+                    <strong>Email</strong>
+                    <p>contato@drlucasmendes.com.br</p>
+                  </div>
+                </div>
+                
+                <div class="contato-item">
+                  <i class="fas fa-phone-alt"></i>
+                  <div>
+                    <strong>Telefone / WhatsApp</strong>
+                    <p style="font-weight: 600; color: var(--accent-dark);">(11) 99999-9999</p>
+                  </div>
+                </div>
+                
+                <div class="contato-item">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <div>
+                    <strong>Localização do Consultório</strong>
+                    <p>Rua da Paz, 123, Sala 1001 - São Paulo, SP (Atendimento Online e Presencial)</p>
+                  </div>
+                </div>
+                
+                <div class="contato-item">
+                  <i class="fas fa-clock"></i>
+                  <div>
+                    <strong>Horário de Atendimento</strong>
+                    <p>Segunda a Sexta: 8h às 19h</p>
+                    <p>Sábado: 9h às 13h (Online)</p>
+                  </div>
+                </div>
+                
+          </div>
+        </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-col">
+        <h3>Dr. Lucas Mendes</h3>
+        <p>Psicólogo Clínico | CRP 06/12345</p>
+        <p>Especialista em TCC e Ansiedade.</p>
+      </div>
+      
+      <div class="footer-col">
+        <h3>Links Úteis</h3>
+        <a href="#sobre">Sobre</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#abordagem">Abordagem</a>
+        <a href="#contato">Agendar Consulta</a>
+      </div>
+      
+      <div class="footer-col">
+        <h3>Contato</h3>
+        <p>Email: contato@drlucasmendes.com.br</p>
+        <p>Telefone: (11) 99999-9999</p>
+        <p>São Paulo, SP</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      &copy; 2025 Dr. Lucas Mendes. Todos os direitos reservados.
+    </div>
+  </footer>
+
+  <script>
+    // Script para o efeito de header fixo
+    window.addEventListener('scroll', function() {
+      const header = document.getElementById('main-header');
+      if (window.scrollY > 50) {
+        header.classList.add('header-scrolled');
+      } else {
+        header.classList.remove('header-scrolled');
+      }
+    });
+
+    // Script para o menu mobile
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenuContent = document.getElementById('mobileMenuContent');
+    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+
+    function toggleMobileMenu() {
+      mobileMenuContent.classList.toggle('active');
+      mobileMenuOverlay.classList.toggle('active');
+      document.body.style.overflow = mobileMenuContent.classList.contains('active') ? 'hidden' : 'auto';
+    }
+
+    mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+    mobileMenuOverlay.addEventListener('click', toggleMobileMenu);
+    
+    // Fechar menu ao clicar em um link
+    document.querySelectorAll('.mobile-menu-content a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (mobileMenuContent.classList.contains('active')) {
+                toggleMobileMenu();
+            }
+        });
+    });
+    
+    // Script para rolar a tela até a seção de contato ao clicar em 'Agendar'
+    document.getElementById('agendarBtn').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('contato').scrollIntoView({ behavior: 'smooth' });
+    });
+
+  </script>
+</body>
+</html>
